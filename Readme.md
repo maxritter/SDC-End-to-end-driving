@@ -32,11 +32,11 @@ This writeup file summarizes the results, and it gives a better insight into the
 
 ---
 
-**Model Architecture **
+**Model Architecture**
 
 During my work on this project, I used different models, some of them smaller, some larger. I ended with the NVIDIA end-to-end CNN, as it delivers the best results on my training set:
 
-<img src="./images/nvidia.PNG" width="350">
+<img src="./images/nvidia.png" width="350">
 
 In the first layer, a Keras lambda layer is used to normalize the data between -1 and 1, as well as to center them around zero. This has a big result on the accuracy at the end, so input normalization is always recommended.
 
@@ -80,7 +80,7 @@ After training 20 epochs, the model was able to drive on both tracks without any
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving on the first track:
 
-<img src="./images/track1.PNG" width="400">
+<img src="./images/track1.png" width="400">
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to steer back towards the middle. These images show what a recovery looks like starting from the left side going to the middle:
 
@@ -89,7 +89,7 @@ I then recorded the vehicle recovering from the left side and right sides of the
 
 Afterwards, I repeated this process on track two in order to get more data points:
 
-<img src="./images/track2.PNG" width="400">
+<img src="./images/track2.png" width="400">
 
 The model was trained on a large dataset of over 40000 images, with a resolution of 200x66 pixel. Data augmentation was applied randomly to the training data set. I used three different kinds of techniques: Flipping, brightness change and shift. 
 
@@ -111,7 +111,7 @@ In the next step, the image is cropped, 50 pixels at the top and 20 pixel at the
 
 The first track was easy to handle at the standard speed of 15, so I tried how fast I can go. 30 was too fast for the low refresh rate of my PC without a GPU, so I settled at 25. I had to add a little damping factor to the steering angles of 0.75, otherwise it would overshoot. A difficult turn on track 1 is this one:
 
-<img src="./images/track1_diff.PNG" width="400">
+<img src="./images/track1_diff.png" width="400">
 
 Because there is some sand on the left side and no clean line marking. When I used a less powerful model at the beginning, this was the turn the car did drive straight forward. With the NVIDIA model, even after only one epoch of training, the car took the turn.
 
@@ -119,6 +119,6 @@ For the second track, I slowed the speed down to 15, because there are many shar
 
 On the third track from the old simulator, I speeded up again to 25, using the same amplification factor for my car. Even though the neural network has never seen this track before, it mastered it whout any problems or critical situations:
 
-<img src="./images/track3.PNG" width="400">
+<img src="./images/track3.png" width="400">
 
 This shows that the trained model is able to generalize very well, and concludes my writeup on this project. I learned a lot and I was a great way to try out different architectures, data augmentation technologies and get fast results.
